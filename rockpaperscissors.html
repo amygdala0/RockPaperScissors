@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock, Paper, Scissors</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <script>
+            function computerPlay() {
+                let choices = [
+                    'Rock', 
+                    'Paper', 
+                    'Scissors'
+                ];
+                let randomNumber = Math.floor(Math.random() * choices.length);
+                let computerSelection = choices[randomNumber];
+            
+                return computerSelection;
+            }
+
+            const computerSelection = computerPlay();
+            let playerSelection = window.prompt("Rock! Paper! Scissor!");
+
+            function playRound(playerSelection, computerSelection) {
+                
+                if ((playerSelection === "Rock" && computerSelection === "Scissors") 
+                || (playerSelection === "Paper" && computerSelection === "Rock") 
+                || (playerSelection === "Scissors" && computerSelection === "Paper")) {
+                    alert("You win!")
+                } else if (playerSelection === computerSelection) {
+                    alert("Draw! Go again!");
+                } else {
+                    alert("You lose!");
+                }
+                
+                return computerSelection;
+            }
+
+            // const computerSelection = computerPlay();
+            // let playerSelection = window.prompt("Rock! Paper! Scissor!");
+        </script>
+    </body>
+</html>
