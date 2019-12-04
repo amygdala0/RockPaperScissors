@@ -6,36 +6,42 @@
     </head>
     <body>
         <script>
-            
-            // determines if computer plays rock, paper, or scissors.
             function computerPlay() {
                 choices = [
                     'Rock', 
                     'Paper', 
                     'Scissors'
                 ]
-                let randomNumber = Math.floor(Math.random() * choices.length)
-                let computerSelection = choices[randomNumber]
+                let randomNumber = Math.floor(Math.random() * choices.length);
+                let computerSelection = choices[randomNumber];
             
-                return computerSelection
+                return computerSelection;
             }
-
-            // determines if computer or user wins round
+            // determines if computer plays rock, paper, or scissorss
+            
+            let playerWin = 0;
+            let computerWin = 0;
+            
             function playRound(playerSelection, computerSelection) {
                 if ((playerSelection === 'Rock' && computerSelection === 'Scissors') 
-                || (playerSelection === 'Paper' && computerSelection === 'Rock') 
-                || (playerSelection === 'Scissors' && computerSelection === 'Paper')) {
+                    || (playerSelection === 'Paper' && computerSelection === 'Rock') 
+                    || (playerSelection === 'Scissors' && computerSelection === 'Paper')) {
                     alert('You win!');
+                    playerWin += 1;
+                    return playerWin
                 } else if (playerSelection === computerSelection) {
                     alert('Draw! Go again!');
                 } else {
                     alert('You lose!');
+                    computerWin += 1;
+                    return computerWin
                 }
             }
-
-            const computerSelection = computerPlay();
-            let playerSelection = 'Rock';
-            console.log(playRound(playerSelection, computerSelection));
+            // determines if computer or user wins round then returns a point
+            
+            let playerSelection = window.prompt("Rock! Paper! Scissors!"); // Receives the player's move to be passed through playRound
+            
+            console.log(playRound(playerSelection, computerPlay()));
         </script>
     </body>
 </html>
