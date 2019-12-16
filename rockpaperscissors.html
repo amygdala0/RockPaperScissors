@@ -6,42 +6,85 @@
     </head>
     <body>
         <script>
+         // determines if computer plays rock, paper, or scissorss
             function computerPlay() {
                 choices = [
-                    'Rock', 
-                    'Paper', 
-                    'Scissors'
+                    'rock', 
+                    'paper', 
+                    'scissors'
                 ]
                 let randomNumber = Math.floor(Math.random() * choices.length);
                 let computerSelection = choices[randomNumber];
-            
+        
+                console.log(computerSelection)
                 return computerSelection;
             }
-            // determines if computer plays rock, paper, or scissorss
-            
-            let playerWin = 0;
-            let computerWin = 0;
-            
-            function playRound(playerSelection, computerSelection) {
-                if ((playerSelection === 'Rock' && computerSelection === 'Scissors') 
-                    || (playerSelection === 'Paper' && computerSelection === 'Rock') 
-                    || (playerSelection === 'Scissors' && computerSelection === 'Paper')) {
-                    alert('You win!');
-                    playerWin += 1;
-                    return playerWin
-                } else if (playerSelection === computerSelection) {
-                    alert('Draw! Go again!');
-                } else {
-                    alert('You lose!');
-                    computerWin += 1;
-                    return computerWin
-                }
-            }
             // determines if computer or user wins round then returns a point
-            
-            let playerSelection = window.prompt("Rock! Paper! Scissors!"); // Receives the player's move to be passed through playRound
-            
-            console.log(playRound(playerSelection, computerPlay()));
+            function playRound(playerSelection, computerSelection) {
+                switch(playerSelection) {
+                    case 'rock':
+                        if (computerSelection == 'paper') {
+                            console.log('You lose. Paper beats rock.')
+                            return 'loss';
+                        } else if (computerSelection == 'scissors') {
+                            console.log('You win. Rock beats scissors.')
+                            return 'win';
+                        } else {
+                            return 'draw';
+                        }
+                        break;
+                    
+                    case 'paper':
+                        if (computerSelection == 'scissors') {
+                            console.log('You lose. Scissors beats paper.')
+                            return 'loss';
+                        } else if (computerSelection == 'rock') {
+                            console.log('You win. Paper beats rock.')
+                            return 'win';
+                        } else {
+                            return 'draw';
+                        }
+                        break;
+                        
+                    case 'scissors':
+                        if (computerSelection == 'rock') {
+                            console.log('You lose. Rock beats scissors')
+                            return 'loss';
+                        } else if (computerSelection == 'paper') {
+                            console.log('You win. Scissors beats paper.')
+                            return 'win';
+                        } else {
+                            return 'draw';
+                        }
+                        break;
+               }
+            }   
+            // plays 5 rounds of rock, paper, scissors. returns a winner
+            function game() {
+                let playerScore = 0;
+                let computerScore = 0;
+
+                for (let i = 0; i < 5; i++) {
+                let score = playRound(prompt("Rock, Paper or Scissors?"), computerPlay());
+          
+                    switch (score) {
+                        case 'loss':
+                        console.log("Computer wins a point.")
+                        computerScore += 1;
+                        break;
+                
+                    case 'win':
+                        console.log("You win a point.")
+                        playerScore += 1;
+                        break;
+                
+                    case 'draw':
+                        console.log("Draw")
+                        break;
+                    }
+                }
+            console.log(playerScore, computerScore)
+            }
         </script>
     </body>
 </html>
